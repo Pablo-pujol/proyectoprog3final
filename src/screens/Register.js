@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import {  Text, View, TouchableOpacity , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
 import { auth } from "../firebase/config";
 
 class Register extends Component {
@@ -13,15 +7,10 @@ class Register extends Component {
     super(props);
     this.state = {
       email: "",
+      userName: "",
+      password: "",
       
     };
-  }
-
- register(email, password) {
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => console.log("Se gegistro Correctamente"))
-      .catch((err) => console.log(err));
   }
 
   render() {
@@ -33,6 +22,12 @@ class Register extends Component {
         keyboardType="email-address"
       />
       <TextInput
+        onChangeText={(text) => this.setState({ userName: text })}
+        placeholder="user name"
+        keyboardType="email-address"
+        secureTextEntry={true}
+      />
+      <TextInput
         onChangeText={(text) => this.setState({ password: text })}
         placeholder="password"
         keyboardType="email-address"
@@ -40,7 +35,7 @@ class Register extends Component {
       />
       <TouchableOpacity
         style={styles.button}
-        onPress={() => this.register(this.state.email, this.state.password)}
+        onPress={() => this.props.register(this.state.email, this.state.password)}
       >
         <Text style={styles.textButton}>Registrar</Text>
       </TouchableOpacity>
