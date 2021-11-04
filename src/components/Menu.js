@@ -8,7 +8,8 @@ import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Profile from "../screens/Profile";
-
+import NewPost from "../screens/NewPost";
+import Search from "../screens/Search"
 
 const Drawer = createDrawerNavigator();
 
@@ -16,7 +17,10 @@ class Menu extends Component {
     constructor() {
       super();
       this.state = {
-          loggedIn: false
+          loggedIn: false,
+          errorMessage: '',
+          registerButton: false,
+          logButton: false,
       };
     }
     
@@ -36,13 +40,17 @@ class Menu extends Component {
 
     register(email, password) {
       auth.createUserWithEmailAndPassword(email, password)
-          .then(() => console.log("Se gegistro Correctamente"))
-          .catch((err) => console.log(err));
+          .then(() => console.log("Se registro Correctamente"))
+          .catch((err) => this.setState({
+                    errorMessage: err.message
+          }));
     }
     login(email, password){
       auth.signInWithEmailAndPassword(email, password)
           .then((userData)=> {this.setState({loggedIn: true})})
-          .catch((e)=> console.log(e))
+          .catch((e)=> this.setState({
+                    errorMessage: e.message
+          }))
     }
 
     logout(){
@@ -57,6 +65,8 @@ class Menu extends Component {
         <Drawer.Navigator>
         <Drawer.Screen name="Inicio" component={() => <Home />} />
         <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
+        <Drawer.Screen name='Nuevo Post' component={()=> <NewPost/>} />
+        <Drawer.Screen name='Search' component={()=> <Search/>} />
         </Drawer.Navigator>
     </ NavigationContainer> : 
     <NavigationContainer>

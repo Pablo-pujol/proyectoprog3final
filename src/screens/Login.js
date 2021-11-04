@@ -25,6 +25,7 @@ class Login extends Component {
                         onPress={()=> this.props.login(this.state.email, this.state.pass)}>
                 <Text style={styles.touchableText} >Login</Text>
         </TouchableOpacity>
+        <Text>{this.props.login.errorMessage}</Text>
       </View>
     );
   }
