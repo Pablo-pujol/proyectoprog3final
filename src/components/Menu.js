@@ -16,10 +16,24 @@ class Menu extends Component {
     constructor() {
       super();
       this.state = {
-          logueado: false
+          loggedIn: false
       };
     }
     
+    componentDidMount (){
+      auth.onAuthStateChanged((user) =>{
+        if(user !== null){
+          this.setState({
+            loggedIn: true,
+          })
+        } else {
+          this.setState({
+            loggedIn: false,
+          })
+        }
+      })
+    }
+
     register(email, password) {
       auth.createUserWithEmailAndPassword(email, password)
           .then(() => console.log("Se gegistro Correctamente"))
@@ -38,7 +52,7 @@ class Menu extends Component {
   
     render() {
       return (
-    this.state.logueado === true? 
+    this.state.loggedIn === true? 
     <NavigationContainer>
         <Drawer.Navigator>
         <Drawer.Screen name="Inicio" component={() => <Home />} />

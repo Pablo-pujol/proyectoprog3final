@@ -25,7 +25,7 @@ class Register extends Component {
         onChangeText={(text) => this.setState({ userName: text })}
         placeholder="user name"
         keyboardType="email-address"
-        secureTextEntry={true}
+        
       />
       <TextInput
         onChangeText={(text) => this.setState({ password: text })}
