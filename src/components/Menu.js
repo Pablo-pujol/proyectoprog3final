@@ -8,6 +8,7 @@ import Home from "../screens/Home";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Profile from "../screens/Profile";
+import NewPost from "../screens/NewPost";
 
 
 const Drawer = createDrawerNavigator();
@@ -57,6 +58,7 @@ class Menu extends Component {
         <Drawer.Navigator>
         <Drawer.Screen name="Inicio" component={() => <Home />} />
         <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
+        <Drawer.Screen name="New Post" component={() => <NewPost />} />
         </Drawer.Navigator>
     </ NavigationContainer> : 
     <NavigationContainer>
