@@ -2,14 +2,15 @@ import React, {Component} from "react";
 import {  Text, View, TouchableOpacity, Modal , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
 import {db, auth} from '../firebase/config'
 import firebase from 'firebase'
+import CommentForm from "./commentForm";
 
 class Post extends Component{
     constructor(props){
         super(props);
         this.state={
             likesNum: 0,
-            liked: false
-
+            liked: false,
+            showModal: false
         }
     }
     componentDidMount(){
@@ -54,6 +55,19 @@ class Post extends Component{
         })})
             .catch((e)=> console.log(e))
     }
+
+
+    openModal() {
+        this.setState({
+            showModal: true
+        })
+    }
+
+    closeModal() {
+        this.setState({
+            showModal: false
+        })
+    }
   
     render(){
         return(
@@ -73,6 +87,30 @@ class Post extends Component{
                 >
                 <Text>Quitar Like</Text>
                 </TouchableOpacity>}
+                <TouchableOpacity 
+                                    onPress={()=>this.openModal()}
+                >
+                <Text>comentario</Text>
+                </TouchableOpacity>
+                
+
+                {
+                    ! this.state.showModal ? 
+                        null
+                    :
+                        <Modal 
+                           
+                            visible={this.state.showModal}
+                            animationType="slide"
+                            transparent={false}
+                        >
+                           
+                            <TouchableOpacity onPress={() => this.closeModal()} >
+                                <Text>X</Text>
+                            </TouchableOpacity>
+                            <Text><CommentForm /></Text>
+                        </Modal>
+                }
                 
 
             </View>
