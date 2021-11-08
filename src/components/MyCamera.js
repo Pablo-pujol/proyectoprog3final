@@ -4,7 +4,7 @@ import {db, auth, storage} from '../firebase/config'
 import firebase from 'firebase'
 import {Camera } from 'expo-camera'
 
-
+//
 
 class MyCamera extends Component{
     constructor(props){
