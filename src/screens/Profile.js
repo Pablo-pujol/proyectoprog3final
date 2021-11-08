@@ -20,8 +20,9 @@ class Profile extends Component {
           <Text>Usuario: {auth.currentUser.email} </Text>
           <Text>Creado el: {auth.currentUser.metadata.creationTime} </Text>
           <Text>Ultima vez: {auth.currentUser.metadata.lastSignInTime} </Text>
-          <TouchableOpacity onPress={()=> this.props.logout()}>
-            <Text style={styles.button}>Logout</Text>
+          <TouchableOpacity onPress={()=> this.props.logout()}
+                            style={styles.touchable} >
+            <Text style={styles.touchableText}>Logout</Text>
         </TouchableOpacity>
       </View>
     );
@@ -33,17 +34,20 @@ const styles = StyleSheet.create({
     height: 193,
     borderRadius: 50
   },
-  button: {
-    backgroundColor: "#28a745",
+  touchable:{
+    backgroundColor: 'red',
     paddingHorizontal: 10,
     paddingVertical: 6,
-    textAlign: "center",
+    textAlign: 'center',
     borderRadius: 4,
     borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "#28a745",
-  },
+    borderStyle: 'solid',
+    borderColor: '#28a745'
 
+},
+touchableText:{
+    color: '#fff'
+},
    
 });
 

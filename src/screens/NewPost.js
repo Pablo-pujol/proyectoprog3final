@@ -1,56 +1,100 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {  Text, View, TouchableOpacity , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
-import { auth } from "../firebase/config";
+import {db, auth} from '../firebase/config'
 
-class NewPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        title: "",
-        description: ""
-    };
-  }
 
-  render() {
-    return (
-      <View>
-        <TextInput
-        onChangeText={(text) => this.setState({ title: text })}
-        placeholder="email"
-        keyboardType="default"
-       />
-       <TextInput
-        onChangeText={(text) => this.setState({ description: text })}
-        placeholder="Description"
-        keyboardType="default"
-        
-       />
-       <TouchableOpacity
-        style={styles.button}
-        onPress={() => (post)}
-       >
-        <Text style={styles.textButton}>Post</Text>
-       </TouchableOpacity>
-        
-       </View>
-    );
-  }
+
+class NewPost extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            title: '',
+            description:''
+        }
+
+    }
+    submitPost (){
+        db.collection('posteos').add({
+            user: auth.currentUser.email,
+            createdAt: Date.now(),
+            title: this.state.title,
+            description: this.state.description,
+            likes: [],
+            comments: []
+        })
+        .then(()=> {
+            console.log('se posteo')
+            this.setState({
+                title: '',
+                description:''
+            })
+        })
+        .catch ((e)=> console.log(e))
+    }
+    render(){
+        return(
+            <View style={styles.formContainer}>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Título'
+                    keyboardType= 'default'
+                    onChangeText = {text => this.setState({title: text})}
+                    value={this.state.title}
+                ></TextInput>
+                <TextInput
+                    style={styles.input}
+                    placeholder='Descripción'
+                    keyboardType= 'default'
+                    onChangeText = {text => this.setState({description: text})}
+                    value={this.state.description}
+                    multiline={true}
+                ></TextInput>
+                <TouchableOpacity onPress={()=>this.submitPost()}
+                                    style={styles.button}>
+                    <Text>Postear</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
 }
-
 const styles = StyleSheet.create({
-    button: {
-      backgroundColor: "#28a745",
-      paddingHorizontal: 10,
-      paddingVertical: 6,
-      textAlign: "center",
-      borderRadius: 4,
-      borderWidth: 1,
-      borderStyle: "solid",
-      borderColor: "#28a745",
+    formContainer:{
+        paddingHorizontal:10,
+        marginTop: 20,
     },
-    textButton: {
-      color: "#fff",
+    multilineInput:{
+        height:100,
+        paddingVertical:15,
+        paddingHorizontal: 10,
+        borderWidth:1,
+        borderColor: '#ccc',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical:10,
     },
-  });
+    button:{
+        backgroundColor:'#28a745',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: 'center',
+        borderRadius:4, 
+        borderWidth:1,
+        borderStyle: 'solid',
+        borderColor: '#28a745'
+    },
+    textButton:{
+        color: '#fff'
+    },
 
+    input: {
+        height: 20,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 6,
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+        marginVertical: 10
+    }
+})
 export default NewPost;
