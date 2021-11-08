@@ -90,7 +90,7 @@ class Post extends Component{
                 <TouchableOpacity 
                                     onPress={()=>this.openModal()}
                 >
-                <Text>comentario</Text>
+                <Text>Ver comentarios</Text>
                 </TouchableOpacity>
                 
 
@@ -108,7 +108,7 @@ class Post extends Component{
                             <TouchableOpacity onPress={() => this.closeModal()} >
                                 <Text>X</Text>
                             </TouchableOpacity>
-                            <Text><CommentForm /></Text>
+                            <Text><CommentForm info={this.props.infoPosteos} /></Text>
                         </Modal>
                 }
                 
