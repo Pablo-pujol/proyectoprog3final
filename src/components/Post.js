@@ -73,6 +73,11 @@ class Post extends Component{
         return(
             <View style={styles.container}>
                 <Text>Título: {this.props.infoPosteos.data.title}</Text>
+                <Image 
+                    style= {styles.profile_img} 
+                    source= {this.props.infoPosteos.data.photo}
+                    resizeMode= "contain"
+                 />
                 <Text>Descripción: {this.props.infoPosteos.data.description}</Text>
                 <Text>Usuario: {this.props.infoPosteos.data.user}</Text>
                 <Text>Likes: {this.state.likesNum}</Text>
@@ -87,7 +92,7 @@ class Post extends Component{
                 >
                 <Text>Quitar Like</Text>
                 </TouchableOpacity>}
-                <TouchableOpacity 
+                <TouchableOpacity   style={styles.touchable}
                                     onPress={()=>this.openModal()}
                 >
                 <Text>Ver comentarios</Text>
@@ -123,6 +128,10 @@ const styles = StyleSheet.create({
         marginVertical: 20
 
     },
+    profile_img: {
+        height: 193,
+        borderRadius: 50
+      },
     touchable:{
         backgroundColor: '#28a745',
         paddingHorizontal: 10,
@@ -131,7 +140,8 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#28a745',
+        marginBottom: 5,
 
     },
     touchablered:{

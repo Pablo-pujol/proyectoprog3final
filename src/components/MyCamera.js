@@ -64,7 +64,7 @@ class MyCamera extends Component{
                 {this.state.photo ? (
                 <>
                     <Image 
-                            style={{flex:1, width:'100%'}}
+                            styles={styles.photo_img}
                             source={{uri: this.state.photo}}
                             />
                     <View>
@@ -92,5 +92,14 @@ class MyCamera extends Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+    photo_img:{
+        flex:1, 
+        width:'50%'
+    },
+
+});
+
 
 export default MyCamera;

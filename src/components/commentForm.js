@@ -2,17 +2,33 @@ import React, {Component} from "react";
 import {  Text, View, TouchableOpacity, Modal , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
 import {db, auth} from '../firebase/config'
 import firebase from 'firebase'
+import Comment from './Comment'
 
 class CommentForm extends Component{
     constructor(props){
         super(props)
         this.state={
-            comentario:''
+            comentario:'',
+            comment: []
         }
     }
     showComments(){
-        
+        db.collection('posteos').onSnapshot((docs)=>{
+            let comentarios = []
+            docs.forEach((doc)=>{
+                comentarios.push({
+                    id: doc.id,
+                    data: doc.data()
+                })
+                console.log(comentarios)
+            })
+            this.setState({comment: comentarios})
+        })
     }
+    componentDidMount(){
+        this.showComments();
+    }
+   
     comentar(){
         let unComentario = {
             author: auth.currentUser.email,
@@ -33,7 +49,13 @@ class CommentForm extends Component{
         return(
             <View >
                 <Text>Comentarios</Text>
-                <View>Campo con los Comentarios</View>
+                <View> 
+                    <FlatList
+                        data={this.state.comment}
+                        keyExtractor={(item)=> item.id}
+                        renderItem={({item})=> <Comment infocomentarios={item}></Comment>}
+                    ></FlatList>
+                </View>
                 <View>
                 <TextInput
                     placeholder='Comment'
