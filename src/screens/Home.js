@@ -17,7 +17,7 @@ class Home extends Component{
         this.showPost();
     }
     showPost(){
-        db.collection('posteos').onSnapshot((docs)=>{
+        db.collection('posteos').orderBy("createdAt", "desc").onSnapshot((docs)=>{
             let posteos = []
             docs.forEach((doc)=>{
                 posteos.push({

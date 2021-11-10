@@ -78,8 +78,8 @@ class Post extends Component{
                     source= {this.props.infoPosteos.data.photo}
                     resizeMode= "contain"
                  />
+                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
                 <Text>Descripción: {this.props.infoPosteos.data.description}</Text>
-                <Text>Usuario: {this.props.infoPosteos.data.user}</Text>
                 <Text>Likes: {this.state.likesNum}</Text>
                 {this.state.liked === false ?
                 <TouchableOpacity style={styles.touchable}
