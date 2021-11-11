@@ -9,6 +9,11 @@ class Login extends Component {
     this.state = {};
   }
 
+  navigateToRegister(){
+    this.props.screenProps.navigation.navigate('Register')
+}
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -21,6 +26,10 @@ class Login extends Component {
                     secureTextEntry={true}
                     style={styles.input}
                     onChangeText={text => this.setState({pass: text})}/>
+        <TouchableOpacity 
+                        onPress={()=> this.navigateToRegister()}>
+                <Text >Todavia no tenes una cuenta? Registrate</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.touchable}
                         onPress={()=> this.props.login(this.state.email, this.state.pass)}>
                 <Text style={styles.touchableText} >Login</Text>

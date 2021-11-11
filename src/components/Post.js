@@ -36,6 +36,9 @@ class Post extends Component{
 
     }
     like(){
+        this.setState({
+            liked: true
+        })
         let likePost = db.collection('posteos').doc(this.props.infoPosteos.id)
         likePost.update({
             likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
@@ -47,6 +50,9 @@ class Post extends Component{
         
     }
     unlike(){
+        this.setState({
+            liked: false
+        })
         let likePost = db.collection('posteos').doc(this.props.infoPosteos.id)
         likePost.update({
             likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
@@ -99,6 +105,7 @@ class Post extends Component{
                 </TouchableOpacity>
                 </View>
                 <Text>Likes: {this.state.likesNum}</Text>
+                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
                 <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
                 <Text> {this.props.infoPosteos.data.comments.text}</Text>
                 

@@ -35,13 +35,15 @@ class Profile extends Component {
 
   render() {
     return (
+      console.log(auth.currentUser),
       <View>
           <Image 
           style= {styles.profile_img}
           source= {require("../../assets/logousuario.png")}
           resizeMode= "contain"
           />
-          <Text>Usuario: {auth.currentUser.email} </Text>
+          <Text>{auth.currentUser.displayName} </Text>
+          <Text>{auth.currentUser.email} </Text>
           <Text>Creado el: {auth.currentUser.metadata.creationTime} </Text>
           <Text>Ultima vez: {auth.currentUser.metadata.lastSignInTime} </Text>
           <View style= {styles.MyPost2}>

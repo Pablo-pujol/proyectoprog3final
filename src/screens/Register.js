@@ -13,6 +13,11 @@ class Register extends Component {
     };
   }
 
+  navigateToLogin(){
+    this.props.registerProps.navigation.navigate('Login')
+}
+
+
   render() {
     return (
       <View>
@@ -34,6 +39,11 @@ class Register extends Component {
         keyboardType="email-address"
         secureTextEntry={true}
       />
+      <TouchableOpacity
+        onPress={() => this.navigateToLogin()}
+      >
+        <Text >Ya tenes una cuenta? </Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => this.props.register(this.state.email, this.state.password, this.state.userName)}

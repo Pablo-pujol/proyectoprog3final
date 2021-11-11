@@ -52,6 +52,11 @@ class Menu extends Component {
         alert("No puede haber campos vacios")
       }else { 
       auth.createUserWithEmailAndPassword(email, password)
+          .then( res => {
+            res.user.updateProfile({
+              displayName: userName
+            })
+          })
           .then(() => console.log("Se registro Correctamente"))
           .catch((err) => this.setState({
                     errorMessage: err.message
@@ -85,14 +90,14 @@ class Menu extends Component {
         <Drawer.Navigator>
         <Drawer.Screen name="Inicio" component={() => <Home />} />
         <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
-        <Drawer.Screen name='Nuevo Post' component={()=> <NewPost/>} />
+        <Drawer.Screen name='Nuevo Post' component={(profileProps)=> <NewPost profileProps={profileProps} />} />
         <Drawer.Screen name='Search' component={()=> <Search/>} />
         </Drawer.Navigator>
     </ NavigationContainer> : 
     <NavigationContainer>
         <Drawer.Navigator>
-          <Drawer.Screen name="Login" component={() => <Login login={(email, pass)=> this.login(email, pass)}/>} />
-          <Drawer.Screen name="Register" component={() => <Register register={(email, pass)=> this.register(email, pass)}/>} />
+          <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass)=> this.login(email, pass)}/>} />
+          <Drawer.Screen name="Register" component={(registerProps) => <Register  registerProps = {registerProps} register={(email, pass, userName)=> this.register(email, pass, userName)}/>} />
         </Drawer.Navigator>
     </ NavigationContainer>
     
