@@ -14,13 +14,16 @@ import Search from "../screens/Search"
 const Drawer = createDrawerNavigator();
 
 class Menu extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = {
           loggedIn: false,
           errorMessage: '',
           registerButton: false,
           logButton: false,
+          email: "",
+          userName: "",
+          password: "",
       };
     }
     
@@ -38,19 +41,36 @@ class Menu extends Component {
       })
     }
 
-    register(email, password) {
+    register(email, password, userName) {
+      if(email === ""){
+        alert("No puede haber campos vacios")
+        }
+      if(password === ""){
+        alert("No puede haber campos vacios")
+        }
+      if(userName === ""){
+        alert("No puede haber campos vacios")
+      }else { 
       auth.createUserWithEmailAndPassword(email, password)
           .then(() => console.log("Se registro Correctamente"))
           .catch((err) => this.setState({
                     errorMessage: err.message
           }));
+         }
     }
     login(email, password){
+      if(email === ""){
+        alert("No puede haber campos vacios")
+        } 
+      if(password === ""){
+        alert("No puede haber campos vacios")
+      }else { 
       auth.signInWithEmailAndPassword(email, password)
           .then((userData)=> {this.setState({loggedIn: true})})
           .catch((e)=> this.setState({
                     errorMessage: e.message
           }))
+       }
     }
 
     logout(){

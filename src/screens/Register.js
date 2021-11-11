@@ -17,16 +17,17 @@ class Register extends Component {
     return (
       <View>
       <TextInput
-        onChangeText={(text) => this.setState({ email: text })}
-        placeholder="email"
-        keyboardType="email-address"
-      />
-      <TextInput
         onChangeText={(text) => this.setState({ userName: text })}
         placeholder="user name"
         keyboardType="default"
         
       />
+      <TextInput
+        onChangeText={(text) => this.setState({ email: text })}
+        placeholder="email"
+        keyboardType="email-address"
+      />
+      
       <TextInput
         onChangeText={(text) => this.setState({ password: text })}
         placeholder="password"

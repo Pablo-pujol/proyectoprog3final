@@ -17,7 +17,9 @@ class Home extends Component{
         this.showPost();
     }
     showPost(){
-        db.collection('posteos').orderBy("createdAt", "desc").onSnapshot((docs)=>{
+        db.collection('posteos')
+        .orderBy("createdAt", "desc")
+        .onSnapshot((docs)=>{
             let posteos = []
             docs.forEach((doc)=>{
                 posteos.push({
@@ -33,6 +35,7 @@ class Home extends Component{
         return(
             <View>
                 <FlatList
+                style={styles.Post}
                 data={this.state.posts}
                 keyExtractor={(item)=> item.id}
                 renderItem={({item})=> <Post infoPosteos={item}></Post>}
@@ -41,4 +44,14 @@ class Home extends Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+  Post:{
+    flex: 1,
+    flexDirection: "row"
+  }
+     
+  });
+  
+
 export default Home;

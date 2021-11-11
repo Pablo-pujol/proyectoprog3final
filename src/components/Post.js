@@ -3,6 +3,7 @@ import {  Text, View, TouchableOpacity, Modal , StyleSheet, Image, FlatList, Act
 import {db, auth} from '../firebase/config'
 import firebase from 'firebase'
 import CommentForm from "./commentForm";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 class Post extends Component{
     constructor(props){
@@ -72,31 +73,34 @@ class Post extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>Título: {this.props.infoPosteos.data.title}</Text>
+                <Text>{this.props.infoPosteos.data.user}</Text>
                 <Image 
-                    style= {styles.profile_img} 
+                    style= {styles.img} 
                     source= {this.props.infoPosteos.data.photo}
                     resizeMode= "contain"
                  />
-                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
-                <Text>Descripción: {this.props.infoPosteos.data.description}</Text>
-                <Text>Likes: {this.state.likesNum}</Text>
-                {this.state.liked === false ?
-                <TouchableOpacity style={styles.touchable}
+                 <View tyle= {styles.boton}>
+                 {this.state.liked === false ?
+                
+                <TouchableOpacity 
                                     onPress={()=> this.like()}
                 >
-                <Text>Like</Text>
+                <Text><Icon name="heart" size={15}  color="" /></Text>
                 </TouchableOpacity> :
-                <TouchableOpacity style={styles.touchablered}
+                <TouchableOpacity 
                                     onPress={()=>this.unlike()}
                 >
-                <Text>Quitar Like</Text>
+                <Text><Icon name="heart" size={15} color="red" /></Text>
                 </TouchableOpacity>}
-                <TouchableOpacity   style={styles.touchable}
+                <TouchableOpacity   
                                     onPress={()=>this.openModal()}
                 >
-                <Text>Ver comentarios</Text>
+                <Text><Icon name="comment" size={15}  color="" /></Text>
                 </TouchableOpacity>
+                </View>
+                <Text>Likes: {this.state.likesNum}</Text>
+                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
+                <Text> {this.props.infoPosteos.data.comments.text}</Text>
                 
 
                 {
@@ -128,9 +132,9 @@ const styles = StyleSheet.create({
         marginVertical: 20
 
     },
-    profile_img: {
+    img: {
         height: 193,
-        borderRadius: 50
+        borderRadius: 2
       },
     touchable:{
         backgroundColor: '#28a745',
@@ -167,6 +171,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 15,
         marginVertical: 10
+    },
+    boton: {
+        flex: 1,
+        flexDirection: "column"
     }
 });
 export default Post;

@@ -12,8 +12,15 @@ class CommentForm extends Component{
             comment: []
         }
     }
+
+    componentDidMount(){
+        this.showComments();
+    }
+   
     showComments(){
-        db.collection('posteos').onSnapshot((docs)=>{
+        db.collection('posteos')
+        .where("comentario", "==", "id")
+        .onSnapshot((docs)=>{
             let comentarios = []
             docs.forEach((doc)=>{
                 comentarios.push({
@@ -25,10 +32,7 @@ class CommentForm extends Component{
             this.setState({comment: comentarios})
         })
     }
-    componentDidMount(){
-        this.showComments();
-    }
-   
+    
     comentar(){
         let unComentario = {
             author: auth.currentUser.email,

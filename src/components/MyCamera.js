@@ -3,6 +3,7 @@ import {  Text, View, TouchableOpacity, Modal , StyleSheet, Image, FlatList, Act
 import {db, auth, storage} from '../firebase/config'
 import firebase from 'firebase'
 import {Camera } from 'expo-camera'
+import Icon from "react-native-vector-icons/FontAwesome";
 
 //
 
@@ -64,10 +65,10 @@ class MyCamera extends Component{
                 {this.state.photo ? (
                 <>
                     <Image 
-                            styles={styles.photo_img}
+                            style={{flex:1, width:'100%'}}
                             source={{uri: this.state.photo}}
                             />
-                    <View>
+                    <View style={styles.container}>
                         <TouchableOpacity onPress={()=> this.savePhoto()}>
                             <Text>Aceptar</Text>
                         </TouchableOpacity>
@@ -82,8 +83,10 @@ class MyCamera extends Component{
                     type={Camera.Constants.Type.front}
                     ref={(cam) => (this.camera = cam)}
                     />
-                    <TouchableOpacity  onPress={()=> this.takePicture()}>
-                        <Text>Shoot</Text>
+                    <TouchableOpacity  
+                        style={styles.container}
+                        onPress={()=> this.takePicture()}>
+                        <Text><Icon name="camera" size={30}  color="" /></Text>
                     </TouchableOpacity>
                 </>
                 )}
@@ -94,12 +97,14 @@ class MyCamera extends Component{
 }
 
 const styles = StyleSheet.create({
-    photo_img:{
-        flex:1, 
-        width:'50%'
+    container:{
+        border: 1,
+        borderColor: "black",
+        borderRadius: 20,
+        textAlign: 'center',
+        margin: 30
     },
-
+    
 });
-
 
 export default MyCamera;

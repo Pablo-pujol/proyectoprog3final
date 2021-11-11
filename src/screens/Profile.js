@@ -19,6 +19,7 @@ class Profile extends Component {
   showMyPost(){
     db.collection('posteos')
     .where("user", "==", auth.currentUser.email)
+    .orderBy("createdAt", "desc")
     .onSnapshot((docs)=>{
         let posteos = []
         docs.forEach((doc)=>{
@@ -43,13 +44,14 @@ class Profile extends Component {
           <Text>Usuario: {auth.currentUser.email} </Text>
           <Text>Creado el: {auth.currentUser.metadata.creationTime} </Text>
           <Text>Ultima vez: {auth.currentUser.metadata.lastSignInTime} </Text>
-          <Text>
+          <View style= {styles.MyPost2}>
                 <FlatList
+                style={styles.MyPost}
                 data={this.state.posts}
                 keyExtractor={(item)=> item.id}
                 renderItem={({item})=> <Post infoPosteos={item}></Post>}
                 ></FlatList>
-          </Text>
+          </View>
 
           <TouchableOpacity onPress={()=> this.props.logout()}
                             style={styles.touchable} >
@@ -79,7 +81,14 @@ const styles = StyleSheet.create({
 touchableText:{
     color: '#fff'
 },
-   
+MyPost:{
+  flex: 1,
+  flexDirection: "row",
+},
+MyPost2:{
+  flex: 1,
+  flexDirection: "column",
+}   
 });
 
 
