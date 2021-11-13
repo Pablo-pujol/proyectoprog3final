@@ -9,17 +9,54 @@ class Search extends Component{
     constructor(){
         super()
         this.state={
-          
+          search: '',
+          posts:[],
+          results: false
         }
 
     }
-   
-    render(){
+   buscador(){
+       db.collection('posteos')
+       .where('user', '==', this.state.search)
+       .orderBy('createdAt', 'asc')
+       .onSnapshot(docs => {
+           let post = []
+           docs.forEach(doc => {
+               post.push({
+                   id: doc.id,
+                   data: doc.data()
+               })
+           })
+           this.setState({
+               posts: post,
+               results: true           
+            })
+       })
+   }
+    
+   render(){
         return(
-            <View>
-                <Text>Search</Text>
-            </View>
+            <>
+                <View>
+                    <Text>Search Posts</Text>
+                    <TextInput 
+                                keyboardType='default'
+                                placeholder='search'
+                                onChangeText={text=> this.setState({search: text})}
+                    />
+                    {this,state.search === '' ?
+                    <TouchableOpacity>
+                        <Text>Search</Text>
+                    </TouchableOpacity>   :
+                    <TouchableOpacity onPress={()=>this.buscador()}>
+                        <Text>Search</Text>
+                    </TouchableOpacity> 
+                }
+                </View>
+            </>
         )
     }
 }
 export default Search;
+
+
