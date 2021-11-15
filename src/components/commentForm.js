@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {  Text, View, TouchableOpacity, Modal , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
+import {  Text, View, TouchableOpacity, Modal , StyleSheet, Image, FlatList, ActivityIndicator, TextInput, TouchableWithoutFeedbackBase} from 'react-native';
 import {db, auth} from '../firebase/config'
 import firebase from 'firebase'
 import Comment from './Comment'
@@ -13,26 +13,7 @@ class CommentForm extends Component{
         }
     }
 
-    componentDidMount(){
-        this.showComments();
-    }
-   
-    showComments(){
-        db.collection('posteos')
-        .where("comentario", "==", "id")
-        .onSnapshot((docs)=>{
-            let comentarios = []
-            docs.forEach((doc)=>{
-                comentarios.push({
-                    id: doc.id,
-                    data: doc.data()
-                })
-                console.log(comentarios)
-            })
-            this.setState({comment: comentarios})
-        })
-    }
-    
+
     comentar(){
         let unComentario = {
             author: auth.currentUser.email,
@@ -56,11 +37,14 @@ class CommentForm extends Component{
             <View >
                 <Text>Comentarios</Text>
                 <View> 
+                    { this.props.info.data.comments.length == 0 ?
+                    <Text>Se el primero en comentar</Text> :
                     <FlatList
                         data={this.props.info.data.comments}
                         keyExtractor={(item)=> item.createdAt}
                         renderItem={({item})=> <Text>{item.text}</Text>}
                     ></FlatList>
+                    }
                 </View>
                 <View>
                 <TextInput

@@ -46,6 +46,7 @@ class Profile extends Component {
           <Text>{auth.currentUser.email} </Text>
           <Text>Creado el: {auth.currentUser.metadata.creationTime} </Text>
           <Text>Ultima vez: {auth.currentUser.metadata.lastSignInTime} </Text>
+          <Text>Posts: {this.state.posts.length} </Text>
           <View style= {styles.MyPost2}>
                 <FlatList
                 style={styles.MyPost}

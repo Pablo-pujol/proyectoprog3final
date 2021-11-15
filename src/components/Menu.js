@@ -48,6 +48,9 @@ class Menu extends Component {
       if(password === ""){
         alert("No puede haber campos vacios")
         }
+      if(password.length < 6){
+        alert("La contraseña debe contener al menos 6 caracteres")
+        }
       if(userName === ""){
         alert("No puede haber campos vacios")
       }else { 
@@ -90,7 +93,7 @@ class Menu extends Component {
         <Drawer.Navigator>
         <Drawer.Screen name="Inicio" component={() => <Home />} />
         <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
-        <Drawer.Screen name='Nuevo Post' component={(profileProps)=> <NewPost profileProps={profileProps} />} />
+        <Drawer.Screen name='Nuevo Post' component={(nuevoPostProps)=> <NewPost nuevoPostProps={nuevoPostProps} />} />
         <Drawer.Screen name='Search' component={()=> <Search/>} />
         </Drawer.Navigator>
     </ NavigationContainer> : 

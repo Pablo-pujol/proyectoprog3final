@@ -32,7 +32,10 @@ class NewPost extends Component{
                 title: '',
                 description:'',
                 showCamera: true
-            })
+            }, ()=> {
+                this.props.nuevoPostProps.navigation.navigate("Inicio")
+            }
+            )
         })
         .catch ((e)=> console.log(e))
     }
@@ -42,6 +45,8 @@ class NewPost extends Component{
             showCamera: false
         })
     }
+
+    
     render(){
         return(
             this.state.showCamera ? <MyCamera onImageUpload={(url)=> this.onImageUpload(url)}/> :
@@ -62,6 +67,7 @@ class NewPost extends Component{
                     multiline={true}
                 ></TextInput>
                 <TouchableOpacity onPress={()=>this.submitPost()}
+                                  
                                     style={styles.button}>
                     <Text>Postear</Text>
                 </TouchableOpacity>

@@ -56,8 +56,15 @@ class Post extends Component{
         })})
             .catch((e)=> console.log(e))
     }
-
-
+    
+    borrarPost () {
+        db.collection("posteos").doc(this.props.infoPosteos.id).delete().then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    }
+    
     openModal() {
         this.setState({
             showModal: true
@@ -101,8 +108,17 @@ class Post extends Component{
                 <Text>Likes: {this.state.likesNum}</Text>
                 <Text>{this.props.infoPosteos.data.displayName}: {this.props.infoPosteos.data.title}</Text>
                 <Text>{this.props.infoPosteos.data.displayName}: {this.props.infoPosteos.data.description}</Text>
-                <Text> {this.props.infoPosteos.data.comments.text}</Text>
-                
+                <Text> Cantidad de comentarios: {this.props.infoPosteos.data.comments.length}</Text>
+
+                { this.props.infoPosteos.data.user === auth.currentUser.email ?
+                <TouchableOpacity 
+                                    onPress={()=> this.borrarPost()}
+                >
+                <Text>Borrar</Text>
+                </TouchableOpacity> :
+
+                <Text> </Text>
+                }
 
                 {
                     ! this.state.showModal ? 
