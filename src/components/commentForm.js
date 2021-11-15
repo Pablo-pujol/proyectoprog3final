@@ -36,7 +36,8 @@ class CommentForm extends Component{
     comentar(){
         let unComentario = {
             author: auth.currentUser.email,
-            text: this.state.comentario
+            text: this.state.comentario,
+            createdAt: Date.now()
         }
         let Comment= db.collection('posteos').doc(this.props.info.id)
         Comment.update({
@@ -50,14 +51,15 @@ class CommentForm extends Component{
     }
 
     render(){
+        console.log(this.props)
         return(
             <View >
                 <Text>Comentarios</Text>
                 <View> 
                     <FlatList
-                        data={this.state.comment}
-                        keyExtractor={(item)=> item.id}
-                        renderItem={({item})=> <Comment infocomentarios={item}></Comment>}
+                        data={this.props.info.data.comments}
+                        keyExtractor={(item)=> item.createdAt}
+                        renderItem={({item})=> <Text>{item.text}</Text>}
                     ></FlatList>
                 </View>
                 <View>
