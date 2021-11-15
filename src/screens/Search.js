@@ -9,9 +9,9 @@ class Search extends Component{
     constructor(){
         super()
         this.state={
+          results: false,
           search: '',
-          posts:[],
-          results: false
+          posts: []
         }
 
     }
@@ -34,8 +34,6 @@ class Search extends Component{
    }
     
    render(){
-       console.log(this.state.posts.length === 0)
-       console.log(this.state.search)
         return(
             <>
                 <View>
@@ -70,5 +68,4 @@ class Search extends Component{
     }
 }
 export default Search;
-
 

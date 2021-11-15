@@ -14,8 +14,8 @@ class Comment extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>Usuario: {this.props.infocomentarios.author}</Text>
-                <Text>Comentario: {this.props.infocomentarios.text}</Text>
+                <Text>Usuario: {this.props.infocomentarios.data.user}</Text>
+                <Text>Comentario: {this.props.infocomentarios.data.comentarios}</Text>
             </View>
         )
     }
