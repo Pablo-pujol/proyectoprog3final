@@ -79,7 +79,7 @@ class Post extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>{this.props.infoPosteos.data.user}</Text>
+                <Text>{this.props.infoPosteos.data.displayName}</Text>
                 <Image 
                     style= {styles.img} 
                     source= {this.props.infoPosteos.data.photo}
@@ -105,8 +105,8 @@ class Post extends Component{
                 </TouchableOpacity>
                 </View>
                 <Text>Likes: {this.state.likesNum}</Text>
-                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
-                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
+                <Text>{this.props.infoPosteos.data.displayName}: {this.props.infoPosteos.data.title}</Text>
+                <Text>{this.props.infoPosteos.data.displayName}: {this.props.infoPosteos.data.description}</Text>
                 <Text> {this.props.infoPosteos.data.comments.text}</Text>
                 
 
