@@ -19,6 +19,8 @@ class Menu extends Component {
       this.state = {
           loggedIn: false,
           errorMessage: '',
+          errorLogin: '',
+          errorCode: '',
           registerButton: false,
           logButton: false,
           email: "",
@@ -61,9 +63,14 @@ class Menu extends Component {
             })
           })
           .then(() => console.log("Se registro Correctamente"))
-          .catch((err) => this.setState({
-                    errorMessage: err.message
-          }));
+          .catch((err) => {
+            console.log(err)
+            this.setState({
+              errorMessage: err.message,
+              errorCode: err.code
+            })
+          }
+          )
          }
     }
     login(email, password){
@@ -75,9 +82,13 @@ class Menu extends Component {
       }else { 
       auth.signInWithEmailAndPassword(email, password)
           .then((userData)=> {this.setState({loggedIn: true})})
-          .catch((e)=> this.setState({
-                    errorMessage: e.message
-          }))
+          .catch((e)=> {
+            console.log(e)
+            this.setState({
+              errorLogin: e.message
+            })
+          }
+          )
        }
     }
 

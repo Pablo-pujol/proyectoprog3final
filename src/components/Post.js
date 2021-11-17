@@ -11,22 +11,23 @@ class Post extends Component{
         this.state={
             likesNum: 0,
             liked: false,
-            showModal: false
+            showModal: false,
+            modalConfirm: false
         }
     }
     componentDidMount(){
         this.estado()
     }
     estado(){
-        console.log(this.props.infoPosteos.data.likes.includes(auth.currentUser.email));
+        //console.log(this.props.infoPosteos.data.likes.includes(auth.currentUser.email));
         if (this.props.infoPosteos.data.likes) {
-            console.log(this.props.infoPosteos.data.likes.length);
+            //console.log(this.props.infoPosteos.data.likes.length);
             this.setState({
                 likesNum: this.props.infoPosteos.data.likes.length,
                 //liked: true
             })  
         } if(this.props.infoPosteos.data.likes.includes(auth.currentUser.email)) {
-            console.log(this.props.infoPosteos.data.likes.length);
+            //console.log(this.props.infoPosteos.data.likes.length);
             this.setState({
                 //likesNum: this.props.infoPosteos.data.likes.lenght,
                 liked: true
@@ -73,9 +74,16 @@ class Post extends Component{
 
     closeModal() {
         this.setState({
-            showModal: false
+            showModal: false,
+            modalConfirm: false
         })
     }
+    modalDelete(){
+        this.setState({
+            modalConfirm: true
+        })
+    }
+
   
     render(){
         return(
@@ -112,7 +120,7 @@ class Post extends Component{
 
                 { this.props.infoPosteos.data.user === auth.currentUser.email ?
                 <TouchableOpacity 
-                                    onPress={()=> this.borrarPost()}
+                                    onPress={()=> this.modalDelete()}
                 >
                 <Text>Borrar</Text>
                 </TouchableOpacity> :
@@ -136,6 +144,25 @@ class Post extends Component{
                             </TouchableOpacity>
                             <Text><CommentForm info={this.props.infoPosteos} /></Text>
                         </Modal>
+                }
+                {
+                     this.state.modalConfirm ?
+                    <Modal  
+                        visible={this.state.modalConfirm}
+                        animationType="slide"
+                        transparent={false}
+                    >
+                        <Text>Seguro que desea borrar este posteo?</Text>
+                        <TouchableOpacity onPress={()=> this.borrarPost()}>
+                            <Text>Confirmar</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=> this.closeModal()}>
+                            <Text>Cancelar</Text>
+                        </TouchableOpacity>
+
+                    </Modal>
+                    :
+                    null
                 }
                 
 

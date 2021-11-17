@@ -16,6 +16,7 @@ class Search extends Component{
 
     }
    buscador(){
+       
        db.collection('posteos')
        .where('user', '==', this.state.search)
        .onSnapshot(docs => {
@@ -26,14 +27,23 @@ class Search extends Component{
                    data: doc.data()
                })
            })
-           this.setState({
-               posts: post,
-               results: true           
-            })
+           if(post.length != 0) {
+            this.setState({
+                posts: post, 
+                results: true         
+             })
+            }else{
+                this.setState({
+                    results: false        
+                    })
+            }
+            
        })
    }
     
    render(){
+    console.log(this.state.posts)
+    console.log(this.state.results)
         return(
             <>
                 <View>
@@ -53,7 +63,8 @@ class Search extends Component{
                     }
                 </View>
                 <View>
-                    {this.state.posts.lenght === 0  ?
+
+                    {this.state.posts && !this.state.results  ?
 
                     <Text>El usuario no existe o aún no tiene publicaciones</Text> :
                     <FlatList

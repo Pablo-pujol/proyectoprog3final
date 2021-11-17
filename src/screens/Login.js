@@ -6,7 +6,10 @@ import {  Text, View, TouchableOpacity , StyleSheet, Image, FlatList, ActivityIn
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: '',
+      pass:''
+    };
   }
 
   navigateToRegister(){
@@ -30,11 +33,17 @@ class Login extends Component {
                         onPress={()=> this.navigateToRegister()}>
                 <Text >Todavia no tenes una cuenta? Registrate</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.touchable}
-                        onPress={()=> this.props.login(this.state.email, this.state.pass)}>
-                <Text style={styles.touchableText} >Login</Text>
-        </TouchableOpacity>
-        <Text>{this.props.login.errorMessage}</Text>
+        <Text>{this.props.login.errorLogin}</Text>
+        {this.state.email && this.state.pass ?
+          <>
+          <TouchableOpacity style={styles.touchable}
+          onPress={()=> this.props.login(this.state.email, this.state.pass)}>
+          <Text style={styles.touchableText} >Login</Text>
+          </TouchableOpacity> 
+          </>
+          :
+        <Text></Text>
+      }
       </View>
     );
   }
