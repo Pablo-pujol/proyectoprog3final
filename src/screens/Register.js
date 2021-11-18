@@ -44,8 +44,7 @@ class Register extends Component {
       >
         <Text >Ya tenes una cuenta? Ingresa aca </Text>
       </TouchableOpacity>
-      <Text > {this.props.errorMessage} </Text>
-      <Text > {this.props.errorCode} </Text>
+      <Text > {this.props.errorRegister} </Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => this.props.register(this.state.email, this.state.password, this.state.userName)}
