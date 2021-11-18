@@ -114,16 +114,16 @@ class Post extends Component{
                 </TouchableOpacity>
                 </View>
                 <Text>Likes: {this.state.likesNum}</Text>
-                <Text>{this.props.infoPosteos.data.displayName}: {this.props.infoPosteos.data.title}</Text>
-                <Text>{this.props.infoPosteos.data.displayName}: {this.props.infoPosteos.data.description}</Text>
+                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
+                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
                 <Text> Cantidad de comentarios: {this.props.infoPosteos.data.comments.length}</Text>
 
-                { this.props.infoPosteos.data.user === auth.currentUser.email ?
-                <TouchableOpacity 
+                { this.props.infoPosteos.data.user === auth.currentUser.displayName ?
+                <TouchableOpacity   
                                     onPress={()=> this.modalDelete()}
                 >
-                <Text>Borrar</Text>
-                </TouchableOpacity> :
+                <Text style= {styles.borrar} ><Icon name="trash" size={15} color="" /></Text>
+                </TouchableOpacity > :
 
                 <Text> </Text>
                 }
@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
     boton: {
         flex: 1,
         flexDirection: "column"
-    }
+    },
+
 });
 export default Post;
