@@ -26,6 +26,7 @@ class Menu extends Component {
           email: "",
           userName: "",
           password: "",
+          cargando: false,
       };
     }
     
@@ -108,6 +109,8 @@ class Menu extends Component {
         <Drawer.Screen name='Search' component={()=> <Search/>} />
         </Drawer.Navigator>
     </ NavigationContainer> : 
+     this.state.cargando === false ? 
+      <p>Cargando</p>: 
     <NavigationContainer>
         <Drawer.Navigator>
           <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} errorLogin = {this.state.errorLogin} login={(email, pass)=> this.login(email, pass)}/>} />

@@ -18,7 +18,7 @@ class NewPost extends Component{
     }
     submitPost (){
         db.collection('posteos').add({
-            user: auth.currentUser.email,
+            user: auth.currentUser.displayName,
             createdAt: Date.now(),
             title: this.state.title,
             description: this.state.description,
