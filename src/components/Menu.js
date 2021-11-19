@@ -65,11 +65,11 @@ class Menu extends Component {
             })
           })
           .then(() => console.log("Se registro Correctamente"))
-          .catch((err) => {
-            console.log(err)
+          .catch((error) => {
+            console.log(error)
             this.setState({
-              errorMessage: err.message,
-              errorCode: err.code
+              errorMessage: error.message,
+              errorCode: error.code
             })
           }
           )
@@ -84,10 +84,10 @@ class Menu extends Component {
       }else { 
       auth.signInWithEmailAndPassword(email, password)
           .then((userData)=> {this.setState({loggedIn: true})})
-          .catch((e)=> {
-            console.log(e)
+          .catch((error)=> {
+            console.log(error)
             this.setState({
-              errorLogin: e.message
+              errorLogin: error.message
             })
           }
           )
@@ -114,8 +114,8 @@ class Menu extends Component {
       <p><Icon name="spinner" size={15} color="" /></p>: 
     <NavigationContainer>
         <Drawer.Navigator>
-          <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass)=> this.login(email, pass)}/>} />
-          <Drawer.Screen name="Register" component={(registerProps) => <Register  registerProps = {registerProps} register={(email, pass, userName)=> this.register(email, pass, userName)}/>} />
+          <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} errorLogin = {this.state.errorLogin} login={(email, pass)=> this.login(email, pass)}/>} />
+          <Drawer.Screen name="Register" component={(registerProps) => <Register  registerProps = {registerProps} errorRegister = {this.state.errorMessage} register={(email, pass, userName)=> this.register(email, pass, userName)}/>} />
         </Drawer.Navigator>
     </ NavigationContainer>
     

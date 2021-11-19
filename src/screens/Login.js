@@ -33,7 +33,8 @@ class Login extends Component {
                         onPress={()=> this.navigateToRegister()}>
                 <Text >Todavia no tenes una cuenta? Registrate</Text>
         </TouchableOpacity>
-        <Text>{this.props.login.errorLogin}</Text>
+        <Text>{this.props.errorLogin}</Text>
+        {console.log(this.props.errorLogin)}
         {this.state.email && this.state.pass ?
           <>
           <TouchableOpacity style={styles.touchable}
