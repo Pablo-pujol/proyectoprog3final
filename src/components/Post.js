@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 10,
         marginVertical: 20
-
+        
     },
     img: {
         height: 193,

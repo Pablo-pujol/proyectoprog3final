@@ -18,7 +18,7 @@ class Profile extends Component {
   }
   showMyPost(){
     db.collection('posteos')
-    .where("user", "==", auth.currentUser.email)
+    .where("user", "==", auth.currentUser.displayName)
     .orderBy("createdAt", "desc")
     .onSnapshot((docs)=>{
         let posteos = []
@@ -87,10 +87,16 @@ touchableText:{
 MyPost:{
   flex: 1,
   flexDirection: "row",
+  justifyContents: "center",
+  alignItemsArr: "flex-start",
+  wraps: "wraps"
 },
 MyPost2:{
   flex: 1,
-  flexDirection: "column",
+  flexDirection: "row",
+  justifyContents: "center",
+  alignItemsArr: "flex-start",
+  wraps: "wraps"
 }   
 });
 

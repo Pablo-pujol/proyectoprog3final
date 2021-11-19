@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -110,7 +111,7 @@ class Menu extends Component {
         </Drawer.Navigator>
     </ NavigationContainer> : 
      this.state.cargando === false ? 
-      <p>Cargando</p>: 
+      <p><Icon name="spinner" size={15} color="" /></p>: 
     <NavigationContainer>
         <Drawer.Navigator>
           <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass)=> this.login(email, pass)}/>} />
