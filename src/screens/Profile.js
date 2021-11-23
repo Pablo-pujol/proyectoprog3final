@@ -47,9 +47,9 @@ class Profile extends Component {
           <Text>Creado el: {auth.currentUser.metadata.creationTime} </Text>
           <Text>Ultima vez: {auth.currentUser.metadata.lastSignInTime} </Text>
           <Text>Posts: {this.state.posts.length} </Text>
-          <View style= {styles.MyPost2}>
+          <View style= {styles.contenedor}>
                 <FlatList
-                style={styles.MyPost}
+                style={styles.contenedor}
                 data={this.state.posts}
                 keyExtractor={(item)=> item.id}
                 renderItem={({item})=> <Post infoPosteos={item}></Post>}
@@ -84,6 +84,11 @@ const styles = StyleSheet.create({
 touchableText:{
     color: '#fff'
 },
+contenedor: {
+  flex: 1,
+  flexDirection: "row",
+  
+}
   
 });
 

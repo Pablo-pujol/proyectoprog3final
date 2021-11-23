@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {  Text, View, TouchableOpacity , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
 import {db, auth} from '../firebase/config'
 import MyCamera from '../components/MyCamera'
-
+import moment from "moment"
 
 
 class NewPost extends Component{
@@ -19,7 +19,7 @@ class NewPost extends Component{
     submitPost (){
         db.collection('posteos').add({
             user: auth.currentUser.displayName,
-            createdAt: Date.now(),
+            createdAt: moment().calendar(),
             title: this.state.title,
             description: this.state.description,
             likes: [],
