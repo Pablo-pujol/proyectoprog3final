@@ -84,20 +84,7 @@ const styles = StyleSheet.create({
 touchableText:{
     color: '#fff'
 },
-MyPost:{
-  flex: 1,
-  flexDirection: "row",
-  justifyContents: "center",
-  alignItemsArr: "flex-start",
-  wraps: "wraps"
-},
-MyPost2:{
-  flex: 1,
-  flexDirection: "row",
-  justifyContents: "center",
-  alignItemsArr: "flex-start",
-  wraps: "wraps"
-}   
+  
 });
 
 

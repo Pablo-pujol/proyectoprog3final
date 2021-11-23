@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ActivityIndicator} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -111,7 +112,7 @@ class Menu extends Component {
         </Drawer.Navigator>
     </ NavigationContainer> : 
      this.state.cargando === false ? 
-      <p><Icon name="spinner" size={15} color="" /></p>: 
+      <p><ActivityIndicator  size="large"  color= "blue" /></p>: 
     <NavigationContainer>
         <Drawer.Navigator>
           <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} errorLogin = {this.state.errorLogin} login={(email, pass)=> this.login(email, pass)}/>} />

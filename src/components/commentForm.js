@@ -16,7 +16,7 @@ class CommentForm extends Component{
 
     comentar(){
         let unComentario = {
-            author: auth.currentUser.email,
+            author: auth.currentUser.displayName,
             text: this.state.comentario,
             createdAt: Date.now()
         }
@@ -40,14 +40,17 @@ class CommentForm extends Component{
                     { this.props.info.data.comments.length == 0 ?
                     <Text>Se el primero en comentar</Text> :
                     <FlatList
+                    
                         data={this.props.info.data.comments}
                         keyExtractor={(item)=> item.createdAt}
-                        renderItem={({item})=> <Text>{item.text}</Text>}
+                        renderItem={({item})=> <Comment infoComentarios={item}></Comment>}
+                       
                     ></FlatList>
                     }
                 </View>
                 <View>
                 <TextInput
+                    style= {styles.comentario}
                     placeholder='Comment'
                     keyboardType='default'
                     multiline
@@ -68,7 +71,15 @@ const styles = StyleSheet.create({
         fontsize: 1.6,
         padding: 15,
         borderRadius: 8,
-        marginBottom: 15
+        marginBottom: 15,
+    },
+    comentario: {
+        marginTop: 5,
+        borderRadius: 5,
+        height: 20,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#ccc',
     }
 });
 

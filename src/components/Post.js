@@ -88,33 +88,32 @@ class Post extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>{this.props.infoPosteos.data.displayName}</Text>
+                <Text  style= {styles.title}  >{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
                 <Image 
                     style= {styles.img} 
                     source= {this.props.infoPosteos.data.photo}
-                    resizeMode= "contain"
+                    resizeMode= "cover"
                  />
-                 <View tyle= {styles.boton}>
+                 <View style= {styles.boton}>
                  {this.state.liked === false ?
                 
-                <TouchableOpacity 
+                <TouchableOpacity   style= {styles.botones}
                                     onPress={()=> this.like()}
                 >
                 <Text><Icon name="heart" size={15}  color="" /></Text>
                 </TouchableOpacity> :
-                <TouchableOpacity 
+                <TouchableOpacity   style= {styles.botones}
                                     onPress={()=>this.unlike()}
                 >
                 <Text><Icon name="heart" size={15} color="red" /></Text>
                 </TouchableOpacity>}
-                <TouchableOpacity   
+                <TouchableOpacity   style= {styles.botones}
                                     onPress={()=>this.openModal()}
                 >
                 <Text><Icon name="comment" size={15}  color="" /></Text>
                 </TouchableOpacity>
                 </View>
                 <Text>Likes: {this.state.likesNum}</Text>
-                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
                 <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
                 <Text> Cantidad de comentarios: {this.props.infoPosteos.data.comments.length}</Text>
 
@@ -176,9 +175,16 @@ const styles = StyleSheet.create({
         marginVertical: 20
         
     },
+    title: {
+        textDecoration: "black",
+        paddingLeft: 8,
+    },
     img: {
-        height: 193,
-        borderRadius: 2
+        height: 200,
+        borderRadius: 2,
+        resizeMode : "cover",
+        marginBottom: 7,
+        marginTop: 8,
       },
     touchable:{
         backgroundColor: '#28a745',
@@ -218,8 +224,14 @@ const styles = StyleSheet.create({
     },
     boton: {
         flex: 1,
-        flexDirection: "column"
+        flexDirection: "row",
+        justifyContents: "center",
+        alignItemsArr: "flex-start",
     },
+    botones: {
+        paddingRight: 3,
+        paddingLeft: 8,
+    }
 
 });
 export default Post;

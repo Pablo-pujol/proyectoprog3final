@@ -14,8 +14,7 @@ class Comment extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text>Usuario: {this.props.infocomentarios.data.user}</Text>
-                <Text>Comentario: {this.props.infocomentarios.data.comentarios}</Text>
+                <Text>{this.props.infoComentarios.author}: {this.props.infoComentarios.text}</Text>
             </View>
         )
     }
@@ -26,7 +25,7 @@ class Comment extends Component{
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 10,
-        marginVertical: 20
+        marginVertical: 13
 
     },
 
