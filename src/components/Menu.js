@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ActivityIndicator} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -102,27 +103,31 @@ class Menu extends Component {
   
     render() {
       return (
-    this.state.loggedIn === true? 
-    <NavigationContainer>
-        <Drawer.Navigator>
-        <Drawer.Screen name="Inicio" component={() => <Home />} />
-        <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
-        <Drawer.Screen name='Nuevo Post' component={(nuevoPostProps)=> <NewPost nuevoPostProps={nuevoPostProps} />} />
-        <Drawer.Screen name='Search' component={()=> <Search/>} />
-        </Drawer.Navigator>
-    </ NavigationContainer> : 
-     this.state.cargando === false ? 
-      <p><ActivityIndicator  size="large"  color= "blue" /></p>: 
-    <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} errorLogin = {this.state.errorLogin} login={(email, pass)=> this.login(email, pass)}/>} />
-          <Drawer.Screen name="Register" component={(registerProps) => <Register  registerProps = {registerProps} errorRegister = {this.state.errorMessage} register={(email, pass, userName)=> this.register(email, pass, userName)}/>} />
-        </Drawer.Navigator>
-    </ NavigationContainer>
-    
+      this.state.loggedIn === true? 
+      <NavigationContainer style={styles.container}>
+          <Drawer.Navigator>
+          <Drawer.Screen name="Inicio" component={() => <Home />} />
+          <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
+          <Drawer.Screen name='Nuevo Post' component={(nuevoPostProps)=> <NewPost nuevoPostProps={nuevoPostProps} />} />
+          <Drawer.Screen name='Search' component={()=> <Search/>} />
+          </Drawer.Navigator>
+      </ NavigationContainer> : 
+      <NavigationContainer>
+          <Drawer.Navigator style={styles.container}>
+            <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} errorLogin = {this.state.errorLogin} login={(email, pass)=> this.login(email, pass)}/>} />
+            <Drawer.Screen name="Register" component={(registerProps) => <Register  registerProps = {registerProps} errorRegister = {this.state.errorMessage} register={(email, pass, userName)=> this.register(email, pass, userName)}/>} />
+          </Drawer.Navigator>
+      </ NavigationContainer>
       );
     }
   }
+
+const styles = StyleSheet.create({
+  container:{
+    justifyContent: 'space-between',
+    alignContent: 'center'
+  }
+})
   
   export default Menu;
   
