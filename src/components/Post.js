@@ -88,7 +88,19 @@ class Post extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text  style= {styles.title}  >{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
+                <View style={styles.parteArriba}>
+                    <Text  style= {styles.title}  >{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
+                    { this.props.infoPosteos.data.user === auth.currentUser.displayName ?
+                    <TouchableOpacity   
+                                        onPress={()=> this.modalDelete()}
+                    >
+                    <Text style= {styles.borrar} ><Icon name="trash" size={20} color="" /></Text>
+                    </TouchableOpacity > :
+
+                    <Text> </Text>
+                    }
+                </View>    
+
                 <Image 
                     style= {styles.img} 
                     source= {this.props.infoPosteos.data.photo}
@@ -100,33 +112,25 @@ class Post extends Component{
                 <TouchableOpacity   style= {styles.botones}
                                     onPress={()=> this.like()}
                 >
-                <Text><Icon name="heart" size={15}  color="" /></Text>
+                <Text><Icon name="heart" size={20}  color="" /></Text>
                 </TouchableOpacity> :
                 <TouchableOpacity   style= {styles.botones}
                                     onPress={()=>this.unlike()}
                 >
-                <Text><Icon name="heart" size={15} color="red" /></Text>
+                <Text><Icon name="heart" size={20} color="red" /></Text>
                 </TouchableOpacity>}
                 <TouchableOpacity   style= {styles.botones}
                                     onPress={()=>this.openModal()}
                 >
-                <Text><Icon name="comment" size={15}  color="" /></Text>
+                <Text><Icon name="comment" size={20}  color="" /></Text>
                 </TouchableOpacity>
                 </View>
-                <Text>Likes: {this.state.likesNum}</Text>
-                <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
-                <Text> Cantidad de comentarios: {this.props.infoPosteos.data.comments.length}</Text>
-
-                { this.props.infoPosteos.data.user === auth.currentUser.displayName ?
-                <TouchableOpacity   
-                                    onPress={()=> this.modalDelete()}
-                >
-                <Text style= {styles.borrar} ><Icon name="trash" size={15} color="" /></Text>
-                </TouchableOpacity > :
-
-                <Text> </Text>
-                }
-
+                <View  style = {styles.informacion}>
+                    <Text>Likes: {this.state.likesNum}</Text>
+                    <Text>{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.description}</Text>
+                    <Text style={styles.cantComentarios}> Cantidad de comentarios: {this.props.infoPosteos.data.comments.length}</Text>
+                </View>
+               
                 {
                     ! this.state.showModal ? 
                         null
@@ -175,12 +179,20 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         backgroundColor: 'rgba(125, 146, 107, 0.8)',
         borderRadius: '1%',
-        padding: '5%'
+        padding: '5%',
         
     },
+    parteArriba:{
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItemsArr: "flex-start",
+
+    },
     title: {
-        textDecoration: "black",
-        paddingLeft: 8,
+        fontSize: 15
+        
+        
     },
     img: {
         height: 200,
@@ -230,10 +242,18 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContents: "center",
         alignItemsArr: "flex-start",
+        
     },
     botones: {
-        paddingRight: 3,
-        paddingLeft: 8,
+        paddingRight: 10,
+        
+    },
+    cantComentarios: {
+        marginLeft: -4
+
+    },
+    informacion: {
+       
     }
 
 });
