@@ -33,7 +33,7 @@ class Home extends Component{
     }
     render(){
         return(
-            <View>
+            <View style={styles.container}>
                 <FlatList
                 style={styles.Post}
                 data={this.state.posts}
@@ -48,7 +48,12 @@ class Home extends Component{
 const styles = StyleSheet.create({
   Post:{
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
+
+  },
+  container: {
+    alignItems: 'center'
+    
   }
      
   });

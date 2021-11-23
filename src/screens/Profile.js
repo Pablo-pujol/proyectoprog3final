@@ -36,7 +36,7 @@ class Profile extends Component {
   render() {
     return (
       console.log(auth.currentUser),
-      <View>
+      <View style ={ styles.container }>
           <Image 
           style= {styles.profile_img}
           source= {require("../../assets/logousuario.png")}
@@ -84,11 +84,6 @@ const styles = StyleSheet.create({
 touchableText:{
     color: '#fff'
 },
-contenedor: {
-  flex: 1,
-  flexDirection: "row",
-  
-}
   
 });
 
