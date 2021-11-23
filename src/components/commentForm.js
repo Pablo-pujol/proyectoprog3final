@@ -57,9 +57,14 @@ class CommentForm extends Component{
                     onChangeText={text => this.setState({comentario: text})}
                     value={this.state.comentario}
                     />
+                {this.state.comentario == '' ?
+                <Text></Text>
+                 :
                 <TouchableOpacity onPress={()=>this.comentar()} style= {styles.btnadd}>
-                    <Text >Enviar comentario</Text>    
+                <Text >Enviar comentario</Text>    
                 </TouchableOpacity>
+                }
+                
                 </View>
             </View>
         )

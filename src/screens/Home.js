@@ -52,7 +52,9 @@ const styles = StyleSheet.create({
 
   },
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: '100%'
     
   }
      
