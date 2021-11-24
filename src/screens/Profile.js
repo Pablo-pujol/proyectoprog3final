@@ -18,7 +18,7 @@ class Profile extends Component {
   }
   showMyPost(){
     db.collection('posteos')
-    .where("user", "==", auth.currentUser.displayName)
+    .where("user", "==", auth.currentUser.email)
     .orderBy("createdAt", "desc")
     .onSnapshot((docs)=>{
         let posteos = []

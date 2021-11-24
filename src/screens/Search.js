@@ -11,7 +11,8 @@ class Search extends Component{
         this.state={
           results: false,
           search: '',
-          posts: []
+          posts: [],
+          searched: false
         }
 
     }
@@ -37,6 +38,9 @@ class Search extends Component{
                     results: false        
                     })
             }
+            this.setState({
+                searched: true
+            })
             
        })
    }
@@ -63,16 +67,21 @@ class Search extends Component{
                     }
                 </View>
                 <View>
+                    {this.state.searched == true ?
+                    this.state.posts && !this.state.results  ?
 
-                    {this.state.posts && !this.state.results  ?
-
-                    <Text>El usuario no existe o aún no tiene publicaciones</Text> :
-                    <FlatList
-                    data={this.state.posts}
-                    keyExtractor={(item)=> item.id}
-                    renderItem={({item})=> <Post infoPosteos={item}></Post>}
-                    />
-                    }
+                        <Text>El usuario no existe o aún no tiene publicaciones</Text> :
+                        <FlatList
+                        data={this.state.posts}
+                        keyExtractor={(item)=> item.id}
+                        renderItem={({item})=> <Post infoPosteos={item}></Post>}
+                        />
+                    
+                    :
+                    <Text></Text>
+                
+                }
+                    
                 </View>
             </>
         )
