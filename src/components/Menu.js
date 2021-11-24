@@ -29,7 +29,6 @@ class Menu extends Component {
           email: "",
           userName: "",
           password: "",
-          cargando: false,
       };
     }
     
@@ -98,6 +97,7 @@ class Menu extends Component {
 
     logout(){
       auth.signOut()
+      
     }
 
   
@@ -107,20 +107,19 @@ class Menu extends Component {
       <NavigationContainer style={styles.container}>
           <Drawer.Navigator>
           <Drawer.Screen name="Inicio" component={() => <Home />} />
-          <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}/>} />
+          <Drawer.Screen name="Profile" component={() => <Profile logout={()=> this.logout()}  />} />
           <Drawer.Screen name='Nuevo Post' component={(nuevoPostProps)=> <NewPost nuevoPostProps={nuevoPostProps} />} />
           <Drawer.Screen name='Search' component={()=> <Search/>} />
           </Drawer.Navigator>
-      </ NavigationContainer> : 
-      this.state.cargando === false ? 
-        <p><ActivityIndicator  size="large"  color= "blue" /></p>: 
+      </ NavigationContainer>
+       : 
       <NavigationContainer>
           <Drawer.Navigator style={styles.container}>
             <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} errorLogin = {this.state.errorLogin} login={(email, pass)=> this.login(email, pass)}/>} />
             <Drawer.Screen name="Register" component={(registerProps) => <Register  registerProps = {registerProps} errorRegister = {this.state.errorMessage} register={(email, pass, userName)=> this.register(email, pass, userName)}/>} />
           </Drawer.Navigator>
       </ NavigationContainer>
-      );
+      )
     }
   }
 

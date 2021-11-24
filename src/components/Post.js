@@ -89,8 +89,8 @@ class Post extends Component{
         return(
             <View style={styles.container}>
                 <View style={styles.parteArriba}>
-                    <Text  style= {styles.title}  >{this.props.infoPosteos.data.user}: {this.props.infoPosteos.data.title}</Text>
-                    { this.props.infoPosteos.data.user === auth.currentUser.displayName ?
+                    <Text  style= {styles.title}  >{this.props.infoPosteos.data.author}: {this.props.infoPosteos.data.title}</Text>
+                    { this.props.infoPosteos.data.user === auth.currentUser.email ?
                     <TouchableOpacity   
                                         onPress={()=> this.modalDelete()}
                     >
@@ -153,13 +153,15 @@ class Post extends Component{
                         animationType="slide"
                         transparent={false}
                     >
-                        <Text>Seguro que desea borrar este posteo?</Text>
-                        <TouchableOpacity onPress={()=> this.borrarPost()}>
-                            <Text>Confirmar</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={()=> this.closeModal()}>
-                            <Text>Cancelar</Text>
-                        </TouchableOpacity>
+                        <Text style={styles.textoBorrar}>Seguro que desea borrar este posteo?</Text>
+                        <View style={styles.botonesModal}>
+                            <TouchableOpacity style={styles.botonConfirm}  onPress={()=> this.borrarPost()}>
+                                <Text>Confirmar</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity  style={styles.botonCancel}  onPress={()=> this.closeModal()}>
+                                <Text>Cancelar</Text>
+                            </TouchableOpacity>
+                        </ View>
 
                     </Modal>
                     :
@@ -252,6 +254,32 @@ const styles = StyleSheet.create({
     },
     informacion: {
        
+    },
+    textoBorrar: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        alignItems: 'center',
+        marginTop: 20
+    },
+    botonesModal:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 20
+
+    },
+    botonConfirm:{
+        backgroundColor: 'green',
+        width : 120,
+        alignItems: 'center'
+
+    },
+    botonCancel:{
+        backgroundColor: 'red',
+        width: 120,
+        alignItems: 'center'
     }
 
 });

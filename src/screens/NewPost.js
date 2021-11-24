@@ -20,7 +20,8 @@ class NewPost extends Component{
         db.collection('posteos').add({
             user: auth.currentUser.email,
             author: auth.currentUser.displayName,
-            createdAt: moment().calendar(),
+            createdAt: Date.now(),
+            //time: moment().calendar(),
             title: this.state.title,
             description: this.state.description,
             likes: [],
