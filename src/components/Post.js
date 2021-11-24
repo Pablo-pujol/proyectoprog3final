@@ -138,14 +138,12 @@ class Post extends Component{
                         <Modal 
                            
                             visible={this.state.showModal}
-                            animationType="slide"
+                            animationType="fade"
                             transparent={false}
                         >
                            
-                            <TouchableOpacity onPress={() => this.closeModal()} >
-                                <Text>X</Text>
-                            </TouchableOpacity>
-                            <Text><CommentForm info={this.props.infoPosteos} /></Text>
+                            
+                            <Text><CommentForm info={this.props.infoPosteos} closeModal={()=> this.closeModal()} /></Text>
                         </Modal>
                 }
                 {

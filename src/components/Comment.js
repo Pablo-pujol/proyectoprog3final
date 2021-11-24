@@ -25,8 +25,9 @@ class Comment extends Component{
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 10,
-        marginVertical: 13
-
+        paddingVertical: 15,
+ 
+        
     },
 
 });
