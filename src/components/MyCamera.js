@@ -69,10 +69,13 @@ class MyCamera extends Component{
                             source={{uri: this.state.photo}}
                             />
                     <View style={styles.container}>
-                        <TouchableOpacity onPress={()=> this.savePhoto()}>
+                        <TouchableOpacity 
+                            style={styles.botones}
+                            onPress={()=> this.savePhoto()}>
                             <Text>Aceptar</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.botones}>
                             <Text>Cancelar</Text>
                         </TouchableOpacity>
                     </View>
@@ -84,7 +87,7 @@ class MyCamera extends Component{
                     ref={(cam) => (this.camera = cam)}
                     />
                     <TouchableOpacity  
-                        style={styles.container}
+                        style={styles.container2}
                         onPress={()=> this.takePicture()}>
                         <Text><Icon name="camera" size={30}  color="" /></Text>
                     </TouchableOpacity>
@@ -98,11 +101,28 @@ class MyCamera extends Component{
 
 const styles = StyleSheet.create({
     container:{
+        marginVertical: 30,
+        flexDirection: "row",
+        textAlign: 'center',
+        marginLeft: 70
+    },
+    container2:{
         border: 1,
         borderColor: "black",
         borderRadius: 20,
         textAlign: 'center',
-        margin: 30
+        margin: 30,
+       
+    },
+    botones:{
+        borderRadius: 5,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: "#000000",
+        marginLeft: 28,
+        //padding: 10
+        paddingHorizontal: 15,
+        paddingVertical:7
     },
     
 });

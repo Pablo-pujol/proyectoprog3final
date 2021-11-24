@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 10,
         marginVertical: 20,
-        backgroundColor: 'rgba(125, 146, 107, 0.8)',
+        //backgroundColor: 'rgba(125, 146, 107, 0.8)',
         borderRadius: '1%',
         padding: '5%',
         

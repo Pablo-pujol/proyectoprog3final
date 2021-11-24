@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     coment:{
         alignItems: 'center',
         marginLeft: 100,
+        marginRight: 139,
         fontSize: 20,
         fontFamily: "Comic Sans MS",
         paddingBottom: 15,
@@ -122,11 +123,11 @@ const styles = StyleSheet.create({
     },
     escribirComent:{
         flexDirection: "row",
-        marginTop: 30,
+        //marginTop: 30,
         paddingRigth: 30,
+        paddingTop: 20,
         textAlign: 'center',
         alignItems: "flex-end",
-        marginHorizontal: 15,
         borderStyle: 'solid',
         borderTopWidth: 1,
         borderColor: '#ccc',
@@ -139,6 +140,7 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         //paddingLeft: 110,
         paddingRigth: 1000,
+        marginLeft: 15,
         
     }
 
