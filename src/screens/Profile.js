@@ -66,6 +66,9 @@ class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: '5%'
+  },
   profile_img: {
     height: 193,
     borderRadius: 50

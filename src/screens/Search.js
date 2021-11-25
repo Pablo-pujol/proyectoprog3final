@@ -49,20 +49,22 @@ class Search extends Component{
     console.log(this.state.posts)
     console.log(this.state.results)
         return(
-            <>
+            <View style={styles.container}>
                 <View>
-                    <Text>Search Posts</Text>
-                    <TextInput 
+                    
+                    <Text style={styles.title}>Search Posts</Text>
+                    <TextInput  style={styles.input}
                                 keyboardType='default'
                                 placeholder='search'
                                 onChangeText={text=> this.setState({search: text})}
                     />
+
                     {this.state.search === '' ?
-                    <TouchableOpacity>
-                        <Text>Search</Text>
+                    <TouchableOpacity style= { styles.boton }>
+                        <Text>Buscar</Text>
                     </TouchableOpacity>   :
-                    <TouchableOpacity onPress={()=>this.buscador()}>
-                        <Text>Search</Text>
+                    <TouchableOpacity style= { styles.boton } onPress={()=>this.buscador()}>
+                        <Text>Buscar</Text>
                     </TouchableOpacity> 
                     }
                 </View>
@@ -83,9 +85,45 @@ class Search extends Component{
                 }
                     
                 </View>
-            </>
+            </View>
         )
     }
 }
+
+
+const styles = StyleSheet.create({
+    container:{
+      padding: '5%'  
+    },
+    title:{
+        textDecorationLine: 'underline'
+    },
+    boton:{
+        backgroundColor: 'rgba(160, 166, 239, 1)',
+        marginHorizontal: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: "center",
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: "#fff",
+        width: '90%',
+        marginTop: 20,
+    },
+    input:{
+        alignContent: 'flex-start',
+        marginHorizontal: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderRadius: 4,
+        borderWidth: 1,
+        borderStyle: "solid",
+        borderColor: "#fff",
+        width: '90%',
+        marginTop: 20,
+    }
+   
+})
 export default Search;
 
