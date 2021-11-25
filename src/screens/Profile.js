@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {  Text, View, TouchableOpacity , StyleSheet, Image, FlatList, ActivityIndicator, TextInput} from 'react-native';
 import { auth, db } from "../firebase/config";
 import Post from '../components/Post.js'
+import Icon from "react-native-vector-icons/FontAwesome";
+
 
 
 class Profile extends Component {
@@ -37,13 +39,9 @@ class Profile extends Component {
     return (
       console.log(auth.currentUser),
       <View style ={ styles.container }>
-          <Image 
-          style= {styles.profile_img}
-          source= {require("../../assets/logousuario.png")}
-          resizeMode= "contain"
-          />
-          <Text>{auth.currentUser.displayName} </Text>
-          <Text>{auth.currentUser.email} </Text>
+         <Icon name="user" size={100} color="" style={styles.usericon}/>
+          <Text style={styles.username}>{auth.currentUser.displayName} </Text>
+          <Text style={styles.usermail}>{auth.currentUser.email} </Text>
           <Text>Creado el: {auth.currentUser.metadata.creationTime} </Text>
           <Text>Ultima vez: {auth.currentUser.metadata.lastSignInTime} </Text>
           <Text>Posts: {this.state.posts.length} </Text>
@@ -67,12 +65,15 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: '5%'
+    padding: '5%',
+    margin: '5%',
+    border: '2px solid black',
+    borderRadius: '2%'
   },
-  profile_img: {
-    height: 193,
-    borderRadius: 50
+  usericon:{
+    textAlign: 'center'
   },
+  
   touchable:{
     backgroundColor: 'red',
     paddingHorizontal: 10,
@@ -87,6 +88,16 @@ const styles = StyleSheet.create({
 touchableText:{
     color: '#fff'
 },
+username:{
+  margin: 'auto'
+},
+usermail:{
+  marginTop: 30
+
+},
+contenedor:{
+  marginTop: 20
+}
   
 });
 
